@@ -278,7 +278,8 @@ public class Parser {
 				finish(commandPos);
 				commandAST = new CallCommand(iAST, apsAST, commandPos);
 
-			} else {
+			}
+			else {
 
 				Vname vAST = parseRestOfVname(iAST);
 
@@ -344,6 +345,12 @@ public class Parser {
 		}
 			break;
 
+		case Token.LCURLY:
+			acceptIt();
+			commandAST = parseCommand();
+			accept(Token.RCURLY);
+			break;
+
 		case Token.BEGIN:
 			acceptIt();
 			commandAST = parseCommand();
@@ -397,7 +404,7 @@ public class Parser {
 		case Token.ELSE:
 		case Token.IN:
 		case Token.EOT:
-
+		case Token.RCURLY:
 			finish(commandPos);
 			commandAST = new EmptyCommand(commandPos);
 			break;

@@ -47,6 +47,8 @@ public class TestScanner {
 	@Test
 	public void testDoubling() {compileExpectSuccess("/double.tri");}
 
+	@Test
+	public void testCurly(){compileExpectSuccess("/while-curly.tri");}
 
 
 	private void compileExpectSuccess(String filename) {
