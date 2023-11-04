@@ -308,6 +308,31 @@ public class Parser {
 					//make assignment (a=a+1)
 					commandAST = new AssignCommand(vAST, eAST, commandPos);
 				}
+				//Implement ** doubling operation
+				else if(currentToken.kind == Token.OPERATOR && currentToken.spelling.equals("**")){
+					acceptIt();
+
+					//a** is the same as a=a*2
+					//vAST variable will be updated
+					//"commandPos" is line number of current command in source code, this will be reused for each new AST node made
+
+					//create IntegerLiteral for 2 (doubling)
+					IntegerLiteral il = new IntegerLiteral("2", commandPos);
+					//wrap IntegerLiteral in IntegerExpression
+					IntegerExpression ie = new IntegerExpression(il, commandPos);
+					//wrap variable name in VnameExpression
+					VnameExpression vne = new VnameExpression(vAST, commandPos);
+					//operator is a *
+					Operator op = new Operator("*", commandPos);
+
+					//assemble expressions into a BinaryExpression (a*2)
+					Expression eAST = new BinaryExpression(vne, op, ie, commandPos);
+					//set last line of command for debugging purposes
+					finish(commandPos);
+
+					//make assignment (a=a*2)
+					commandAST = new AssignCommand(vAST, eAST, commandPos);
+				}
 				else {
 
 					accept(Token.BECOMES);

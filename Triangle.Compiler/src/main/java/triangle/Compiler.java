@@ -40,8 +40,9 @@ public class Compiler {
 
 	/** The filename for the object program, normally obj.tam. */
 	static String objectName = "obj.tam";
-	
+
 	static boolean showTree = false;
+
 	static boolean folding = false;
 
 	private static Scanner scanner;
@@ -102,7 +103,7 @@ public class Compiler {
 			if (folding) {
 				theAST.visit(new ConstantFolder());
 				//Task 2.c show tree after folding is complete
-				System.out.println("AST after folding");
+				System.out.println("AST after folding...");
 				drawer.draw(theAST);
 			}
 			
@@ -129,17 +130,17 @@ public class Compiler {
 	 *             source filename.
 	 */
 	public static void main(String[] args) {
-		//Task 2.b create new Compiler instance for cli parsing
-		Compiler compiler = new Compiler();
+		//Create new Compiler instance
+		//Compiler compiler = new Compiler();
 
-		//Task 2.b using cli parser to parse arguments into program
-		Args.parseOrExit(compiler, args);
+		//using cli parser to parse arguments into program
+		//Args.parseOrExit(compiler, args);
 
 		if (args.length < 1) {
 			System.out.println("Usage: tc filename [-o=outputfilename] [tree] [folding]");
 			System.exit(1);
 		}
-		
+
 		parseArgs(args);
 
 		String sourceName = args[0];

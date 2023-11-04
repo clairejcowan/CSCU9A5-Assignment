@@ -44,6 +44,9 @@ public class TestScanner {
 	@Test
 	public void testIncrement() { compileExpectSuccess("/increment.tri"); }
 
+	@Test
+	public void testDoubling() {compileExpectSuccess("/double.tri");}
+
 
 
 	private void compileExpectSuccess(String filename) {

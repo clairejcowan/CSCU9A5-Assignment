@@ -2,7 +2,7 @@ apply plugin: 'java'
 
 sourceCompatibility = 11
 
-//tells Gradle where to find dependencies, in this case mavenCentral
+//Task 2.a tells Gradle where to find dependencies, in this case mavenCentral
 repositories {
     mavenCentral();
 }
