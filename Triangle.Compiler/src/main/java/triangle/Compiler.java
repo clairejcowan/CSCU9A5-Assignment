@@ -18,6 +18,8 @@
 
 package triangle;
 
+
+import com.sampullara.cli.Args;
 import triangle.abstractSyntaxTrees.Program;
 import triangle.codeGenerator.Emitter;
 import triangle.codeGenerator.Encoder;
@@ -99,6 +101,9 @@ public class Compiler {
 			}
 			if (folding) {
 				theAST.visit(new ConstantFolder());
+				//Task 2.c show tree after folding is complete
+				System.out.println("AST after folding");
+				drawer.draw(theAST);
 			}
 			
 			if (reporter.getNumErrors() == 0) {
@@ -124,6 +129,11 @@ public class Compiler {
 	 *             source filename.
 	 */
 	public static void main(String[] args) {
+		//Task 2.b create new Compiler instance for cli parsing
+		Compiler compiler = new Compiler();
+
+		//Task 2.b using cli parser to parse arguments into program
+		Args.parseOrExit(compiler, args);
 
 		if (args.length < 1) {
 			System.out.println("Usage: tc filename [-o=outputfilename] [tree] [folding]");
