@@ -345,6 +345,7 @@ public class Parser {
 		}
 			break;
 
+		//Support for { parse commands }
 		case Token.LCURLY:
 			acceptIt();
 			commandAST = parseCommand();
@@ -404,6 +405,7 @@ public class Parser {
 		case Token.ELSE:
 		case Token.IN:
 		case Token.EOT:
+		//Support for end of {...} block
 		case Token.RCURLY:
 			finish(commandPos);
 			commandAST = new EmptyCommand(commandPos);

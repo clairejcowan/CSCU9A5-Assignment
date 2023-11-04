@@ -19,12 +19,12 @@
 package triangle;
 
 
-import com.sampullara.cli.Args;
 import triangle.abstractSyntaxTrees.Program;
 import triangle.codeGenerator.Emitter;
 import triangle.codeGenerator.Encoder;
 import triangle.contextualAnalyzer.Checker;
 import triangle.optimiser.ConstantFolder;
+import triangle.optimiser.GenerateSummaryStats;
 import triangle.syntacticAnalyzer.Parser;
 import triangle.syntacticAnalyzer.Scanner;
 import triangle.syntacticAnalyzer.SourceFile;
@@ -44,6 +44,8 @@ public class Compiler {
 	static boolean showTree = false;
 
 	static boolean folding = false;
+
+	static boolean stats = false;
 
 	private static Scanner scanner;
 	private static Parser parser;
@@ -106,6 +108,11 @@ public class Compiler {
 				System.out.println("AST after folding...");
 				drawer.draw(theAST);
 			}
+			if (stats){
+				GenerateSummaryStats summaryStats = new GenerateSummaryStats();
+				theAST.visit(summaryStats);
+				summaryStats.printSumStats();
+			}
 			
 			if (reporter.getNumErrors() == 0) {
 				System.out.println("Code Generation ...");
@@ -161,6 +168,9 @@ public class Compiler {
 				objectName = s.substring(3);
 			} else if (sl.equals("folding")) {
 				folding = true;
+			}
+			else if (sl.equals("stats")){
+				stats = true;
 			}
 		}
 	}
