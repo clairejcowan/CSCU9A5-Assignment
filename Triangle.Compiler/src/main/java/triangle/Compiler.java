@@ -41,12 +41,16 @@ import triangle.treeDrawer.Drawer;
 public class Compiler {
 
 	/** The filename for the object program, normally obj.tam. */
+	@Argument(alias = "o", description = "the name of the file containing the object program.")
 	static String objectName = "obj.tam";
 
+	@Argument(alias = "tree", description = "the AST is to be displayed after contextual analysis")
 	static boolean showTree = false;
 
+	@Argument(alias = "folding", description = "AST after folding")
 	static boolean folding = false;
 
+	@Argument(alias = "stats", description = "shows CharacterExpression and IntegerExpression counts")
 	static boolean stats = false;
 
 	private static Scanner scanner;
@@ -109,6 +113,7 @@ public class Compiler {
 				//Task 2.c show tree after folding is complete
 				System.out.println("AST after folding...");
 				drawer.draw(theAST);
+				showTree = true;
 			}
 			//Task 5.b add stats option
 			if (stats){
@@ -141,10 +146,10 @@ public class Compiler {
 	 */
 	public static void main(String[] args) {
 		//Create new Compiler instance
-		//Compiler compiler = new Compiler();
+		Compiler compiler = new Compiler();
 
 		//using cli parser to parse arguments into program
-		//Args.parseOrExit(compiler, args);
+		Args.parseOrExit(compiler, args);
 
 		if (args.length < 1) {
 			System.out.println("Usage: tc filename [-o=outputfilename] [tree] [folding]");
