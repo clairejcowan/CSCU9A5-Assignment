@@ -31,8 +31,10 @@ public class GenerateSummaryStats implements ActualParameterVisitor<Void, Abstra
 		RecordAggregateVisitor<Void, AbstractSyntaxTree>, TypeDenoterVisitor<Void, AbstractSyntaxTree>,
 		VnameVisitor<Void, AbstractSyntaxTree> {
 
+	//Initialise counter instance variables
 	private int characterCount = 0, integerCount = 0;
 
+	//Prints number of CharacterExpressions and IntegerExpression
 	public void printSumStats(){
 		System.out.println("Character Expressions: " + characterCount);
 		System.out.println("Integer Expressions: " + integerCount);
@@ -254,7 +256,7 @@ public class GenerateSummaryStats implements ActualParameterVisitor<Void, Abstra
 
 	@Override
 	public AbstractSyntaxTree visitCharacterExpression(CharacterExpression ast, Void arg) {
-		characterCount++;
+		characterCount++; //increment count for each CharacterExpression
 		ast.CL.visit(this);
 		return null;
 	}
@@ -284,7 +286,7 @@ public class GenerateSummaryStats implements ActualParameterVisitor<Void, Abstra
 
 	@Override
 	public AbstractSyntaxTree visitIntegerExpression(IntegerExpression ast, Void arg) {
-		integerCount++;
+		integerCount++; //increment count for each IntegerExpression
 		return ast;
 	}
 
@@ -447,6 +449,18 @@ public class GenerateSummaryStats implements ActualParameterVisitor<Void, Abstra
 	@Override
 	public AbstractSyntaxTree visitRepeatCommand(RepeatCommand ast, Void arg) {
 		ast.C.visit(this);
+		AbstractSyntaxTree replacement = ast.E.visit(this);
+		if (replacement != null) {
+			ast.E = (Expression) replacement;
+		}
+		return null;
+	}
+
+	//Implement visitTestWhileCommand
+	@Override
+	public AbstractSyntaxTree visitTestWhileCommand(TestWhileCommand ast, Void arg) {
+		ast.C1.visit(this);
+		ast.C2.visit(this);
 		AbstractSyntaxTree replacement = ast.E.visit(this);
 		if (replacement != null) {
 			ast.E = (Expression) replacement;

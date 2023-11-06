@@ -19,6 +19,8 @@
 package triangle;
 
 
+import com.sampullara.cli.Args;
+import com.sampullara.cli.Argument;
 import triangle.abstractSyntaxTrees.Program;
 import triangle.codeGenerator.Emitter;
 import triangle.codeGenerator.Encoder;
@@ -108,6 +110,7 @@ public class Compiler {
 				System.out.println("AST after folding...");
 				drawer.draw(theAST);
 			}
+			//Task 5.b add stats option
 			if (stats){
 				GenerateSummaryStats summaryStats = new GenerateSummaryStats();
 				theAST.visit(summaryStats);

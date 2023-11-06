@@ -194,6 +194,18 @@ public final class Checker implements ActualParameterVisitor<FormalParameter, Vo
 		return null;
 	}
 
+	//Implement visitTestWhileCommand
+	@Override
+	public Void visitTestWhileCommand(TestWhileCommand ast, Void arg){
+		ast.C1.visit(this);
+		var eType = ast.E.visit(this);
+
+		checkAndReportError(eType.equals(StdEnvironment.booleanType), "Boolean expression expected here", ast.E);
+		ast.C2.visit(this);
+
+		return null;
+	}
+
 	// Expressions
 
 	// Returns the TypeDenoter denoting the type of the expression. Does

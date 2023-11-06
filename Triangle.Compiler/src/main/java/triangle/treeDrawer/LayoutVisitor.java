@@ -165,6 +165,15 @@ public class LayoutVisitor implements ActualParameterVisitor<Void, DrawingTree>,
 		return layoutBinary("RepCom.", d1, d2);
 	}
 
+	//Implement visitTestWhileCommand
+	@Override
+	public DrawingTree visitTestWhileCommand(TestWhileCommand ast, Void obj){
+		var d1= ast.C1.visit(this);
+		var d2 = ast.E.visit(this);
+		var d3 = ast.C2.visit(this);
+		return layoutTernary("TestWhileCom.", d1, d2, d3);
+	}
+
 	// Expressions
 	@Override
 	public DrawingTree visitArrayExpression(ArrayExpression ast, Void obj) {
