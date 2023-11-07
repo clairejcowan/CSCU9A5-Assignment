@@ -598,6 +598,19 @@ public class ConstantFolder implements ActualParameterVisitor<Void, AbstractSynt
 			else if (o.decl == StdEnvironment.subtractDecl){
 				foldedValue = int1 - int2;
 			}
+			//Task 7.a operator support
+			else if(o.decl == StdEnvironment.equalDecl)
+				foldedValue = int1 = int2;
+			else if(o.decl == StdEnvironment.lessDecl)
+				foldedValue = int1 < int2;
+			else if(o.decl == StdEnvironment.notgreaterDecl)
+				foldedValue = int1 <= int2;
+			else if(o.decl == StdEnvironment.greaterDecl)
+				foldedValue = int1 > int2;
+			else if(o.decl == StdEnvironment.notlessDecl)
+				foldedValue = int1 >= int2;
+			else if(o.decl == StdEnvironment.unequalDecl)
+				foldedValue = int1 != int2;
 
 
 			if (foldedValue instanceof Integer) {
@@ -605,8 +618,26 @@ public class ConstantFolder implements ActualParameterVisitor<Void, AbstractSynt
 				IntegerExpression ie = new IntegerExpression(il, node1.getPosition());
 				ie.type = StdEnvironment.integerType;
 				return ie;
-			} else if (foldedValue instanceof Boolean) {
-				/* currently not handled! */
+			}
+			//Task 7.a including booleans in constant folding
+			else if (foldedValue instanceof Boolean) {
+				//Create new Identifier object
+				Identifier id = new Identifier(foldedValue.toString(), node1.getPosition());
+
+				//if true set id to true, else set id to false
+				if(foldedValue.toString().equalsIgnoreCase("true"))
+					id.decl = StdEnvironment.trueDecl;
+				else
+					id.decl = StdEnvironment.falseDecl;
+
+				//Create SimpleVname wrapper for Identifier
+				SimpleVname svn = new SimpleVname(id, node1.getPosition());
+				//Create VnameExpression wrapper for SimpleVname
+				VnameExpression vne = new VnameExpression(svn, node1.getPosition());
+
+				//set VnameExpression to be of type boolean and return it
+				vne.type = StdEnvironment.booleanType;
+				return vne;
 			}
 		}
 
