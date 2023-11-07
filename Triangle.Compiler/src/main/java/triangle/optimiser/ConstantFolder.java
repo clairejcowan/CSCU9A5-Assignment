@@ -500,7 +500,7 @@ public class ConstantFolder implements ActualParameterVisitor<Void, AbstractSynt
 		return null;
 	}
 
-	//Implement visitTestWhileCommand
+	//Task 6.a implement visitTestWhileCommand
 	public AbstractSyntaxTree visitTestWhileCommand(TestWhileCommand ast, Void arg) {
 		ast.C1.visit(this);
 		ast.C2.visit(this);

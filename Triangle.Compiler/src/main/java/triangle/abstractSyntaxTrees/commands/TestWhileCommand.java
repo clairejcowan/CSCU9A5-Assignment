@@ -22,6 +22,7 @@ import triangle.abstractSyntaxTrees.expressions.Expression;
 import triangle.abstractSyntaxTrees.visitors.CommandVisitor;
 import triangle.syntacticAnalyzer.SourcePosition;
 
+//Task 6.a class handles new loop command
 public class TestWhileCommand extends Command {
 
     public TestWhileCommand(Command c1AST, Expression eAST, Command c2AST, SourcePosition position) {

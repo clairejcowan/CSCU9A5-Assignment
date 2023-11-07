@@ -31,10 +31,10 @@ public class GenerateSummaryStats implements ActualParameterVisitor<Void, Abstra
 		RecordAggregateVisitor<Void, AbstractSyntaxTree>, TypeDenoterVisitor<Void, AbstractSyntaxTree>,
 		VnameVisitor<Void, AbstractSyntaxTree> {
 
-	//Initialise counter instance variables
+	//Task 5.a initialise counter instance variables
 	private int characterCount = 0, integerCount = 0;
 
-	//Prints number of CharacterExpressions and IntegerExpression
+	//Task 5.a prints number of CharacterExpressions and IntegerExpression
 	public void printSumStats(){
 		System.out.println("Character Expressions: " + characterCount);
 		System.out.println("Integer Expressions: " + integerCount);
@@ -256,7 +256,7 @@ public class GenerateSummaryStats implements ActualParameterVisitor<Void, Abstra
 
 	@Override
 	public AbstractSyntaxTree visitCharacterExpression(CharacterExpression ast, Void arg) {
-		characterCount++; //increment count for each CharacterExpression
+		characterCount++; //Task 5.a increment count for each CharacterExpression
 		ast.CL.visit(this);
 		return null;
 	}
@@ -286,7 +286,7 @@ public class GenerateSummaryStats implements ActualParameterVisitor<Void, Abstra
 
 	@Override
 	public AbstractSyntaxTree visitIntegerExpression(IntegerExpression ast, Void arg) {
-		integerCount++; //increment count for each IntegerExpression
+		integerCount++; //Task 5.a increment count for each IntegerExpression
 		return ast;
 	}
 
@@ -456,7 +456,7 @@ public class GenerateSummaryStats implements ActualParameterVisitor<Void, Abstra
 		return null;
 	}
 
-	//Implement visitTestWhileCommand
+	//Task 6.a implement visitTestWhileCommand
 	@Override
 	public AbstractSyntaxTree visitTestWhileCommand(TestWhileCommand ast, Void arg) {
 		ast.C1.visit(this);

@@ -67,7 +67,8 @@ final class Token extends Object {
 	INTLITERAL = 0, CHARLITERAL = 1, IDENTIFIER = 2, OPERATOR = 3,
 
 			// reserved words - must be in alphabetical order...
-			ARRAY = 4, BEGIN = 5, CONST = 6, DO = 7, ELSE = 8, END = 9, FUNC = 10, IF = 11, IN = 12, LET = 13, LOOP = 14,
+			ARRAY = 4, BEGIN = 5, CONST = 6, DO = 7, ELSE = 8, END = 9, FUNC = 10, IF = 11, IN = 12, LET = 13,
+			LOOP = 14, //Task 6.a add new LOOP token
 			OF = 15, PROC = 16, RECORD = 17, REPEAT = 18, THEN = 19, TYPE = 20, UNTIL = 21, VAR = 22, WHILE = 23,
 
 			// punctuation...
@@ -80,7 +81,9 @@ final class Token extends Object {
 			EOT = 36, ERROR = 37;
 
 	private static String[] tokenTable = new String[] { "<int>", "<char>", "<identifier>", "<operator>", "array",
-			"begin", "const", "do", "else", "end", "func", "if", "in", "let", "loop", "of", "proc", "record", "repeat", "then",
+			"begin", "const", "do", "else", "end", "func", "if", "in", "let",
+			"loop", //Task 6.a add new LOOP key word to token table
+			"of", "proc", "record", "repeat", "then",
 			"type", "until", "var", "while", ".", ":", ";", ",", ":=", "~", "(", ")", "[", "]", "{", "}", "", "<error>" };
 
 	private final static int firstReservedWord = Token.ARRAY, lastReservedWord = Token.WHILE;

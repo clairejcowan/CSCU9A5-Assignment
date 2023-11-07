@@ -175,7 +175,7 @@ public final class Encoder implements ActualParameterVisitor<Frame, Integer>,
 		return null;
 	}
 
-	//Implement visitTestWhileCommand
+	//Task 6.a implement visitTestWhileCommand
 	@Override
 	public Void visitTestWhileCommand(TestWhileCommand ast, Frame frame){
 		var jumpAddr = emitter.emit(OpCode.JUMP, 0, Register.CB, 0);
@@ -185,7 +185,7 @@ public final class Encoder implements ActualParameterVisitor<Frame, Integer>,
 		ast.C2.visit(this, frame);
 		emitter.patch(jumpAddr);
 
-		//visits Command C1 and Expression E
+		//visits Command C1 and evaluates Expression E
 		ast.C1.visit(this, frame);
 		ast.E.visit(this, frame);
 

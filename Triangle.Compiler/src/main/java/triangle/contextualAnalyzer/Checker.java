@@ -194,7 +194,7 @@ public final class Checker implements ActualParameterVisitor<FormalParameter, Vo
 		return null;
 	}
 
-	//Implement visitTestWhileCommand
+	//Task 6.a implement visitTestWhileCommand
 	@Override
 	public Void visitTestWhileCommand(TestWhileCommand ast, Void arg){
 		ast.C1.visit(this);

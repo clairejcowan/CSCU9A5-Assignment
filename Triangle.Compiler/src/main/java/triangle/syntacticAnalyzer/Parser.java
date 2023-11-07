@@ -311,7 +311,7 @@ public class Parser {
 					//make assignment (a=a+1)
 					commandAST = new AssignCommand(vAST, eAST, commandPos);
 				}
-				//Implement ** doubling operation
+				//Task 3.a implement ** doubling operation
 				else if(currentToken.kind == Token.OPERATOR && currentToken.spelling.equals("**")){
 					acceptIt();
 
@@ -347,7 +347,7 @@ public class Parser {
 		}
 			break;
 
-		//Support for { parse commands }
+		//Task 4.a Support for { parse commands }
 		case Token.LCURLY:
 			acceptIt();
 			commandAST = parseCommand();
@@ -402,18 +402,23 @@ public class Parser {
 		}
 			break;
 
-		//Implement test while loop
+		//Task 6.a implement test while loop
 		case Token.LOOP: {
+			//get LOOP token
 			acceptIt();
 
+			//parse command(s) C1
 			Command c1AST = parseCommand();
 
+			//accept WHILE token and parse expression E
 			accept(Token.WHILE);
 			Expression eAST = parseExpression();
 
+			//accept DO token and parse command C2
 			accept(Token.DO);
 			Command c2AST = parseSingleCommand();
 
+			//set last line of command for debugging purposes and create new TestWhileCommand
 			finish(commandPos);
 			commandAST = new TestWhileCommand(c1AST, eAST, c2AST, commandPos);
 		}
@@ -424,7 +429,7 @@ public class Parser {
 		case Token.ELSE:
 		case Token.IN:
 		case Token.EOT:
-		//Support for end of {...} block
+		//Task 4.a Support for end of {...} block
 		case Token.RCURLY:
 			finish(commandPos);
 			commandAST = new EmptyCommand(commandPos);

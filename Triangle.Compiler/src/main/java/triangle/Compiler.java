@@ -50,8 +50,10 @@ public class Compiler {
 	@Argument(alias = "folding", description = "AST after folding")
 	static boolean folding = false;
 
+	//Task 5.b flag for showing CharacterExpression and IntegerExpression counts
 	@Argument(alias = "stats", description = "shows CharacterExpression and IntegerExpression counts")
 	static boolean stats = false;
+
 
 	private static Scanner scanner;
 	private static Parser parser;
@@ -177,6 +179,7 @@ public class Compiler {
 			} else if (sl.equals("folding")) {
 				folding = true;
 			}
+			//Task 5.b handle new flag option
 			else if (sl.equals("stats")){
 				stats = true;
 			}

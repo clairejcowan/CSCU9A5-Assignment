@@ -20,6 +20,7 @@ public interface CommandVisitor<TArg, TResult> {
 
 	TResult visitRepeatCommand(RepeatCommand ast, TArg arg);
 
+	//Task 6.a add visitor for new loop type
 	TResult visitTestWhileCommand(TestWhileCommand ast, TArg arg);
 
 }

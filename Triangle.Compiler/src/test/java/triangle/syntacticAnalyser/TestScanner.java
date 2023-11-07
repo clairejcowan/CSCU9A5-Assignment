@@ -44,12 +44,18 @@ public class TestScanner {
 	@Test
 	public void testIncrement() { compileExpectSuccess("/increment.tri"); }
 
+	//Task 3.b implement unit test for doubling (a**)
 	@Test
 	public void testDoubling() {compileExpectSuccess("/double.tri");}
 
+	//Task 4.b implement unit test for {...}
 	@Test
 	public void testCurly(){compileExpectSuccess("/while-curly.tri");}
 
+	/*Task 6.b implement unit test for new loop:
+	    loop C1
+	    while E
+	    do C2 */
 	@Test
 	public void testTestWhileLoop(){compileExpectSuccess("/loopwhile.tri");}
 
