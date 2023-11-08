@@ -600,7 +600,7 @@ public class ConstantFolder implements ActualParameterVisitor<Void, AbstractSynt
 			}
 			//Task 7.a operator support
 			else if(o.decl == StdEnvironment.equalDecl)
-				foldedValue = int1 = int2;
+				foldedValue = int1 == int2;
 			else if(o.decl == StdEnvironment.lessDecl)
 				foldedValue = int1 < int2;
 			else if(o.decl == StdEnvironment.notgreaterDecl)
